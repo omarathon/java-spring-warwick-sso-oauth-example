@@ -20,6 +20,14 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+    REST API controller for the /oauth/begin and /oauth/authorised endpoints. This class does most of the work.
+    Usage:
+        1. Make a request to /oauth/begin to obtain a redirect URL.
+        2. Redirect the user to the URL obtained from 1 (or if testing, visit it yourself).
+        3. Once the user has granted access and landed on the callback URL, extract the oauth_token and oauth_verifier from the URL.
+        4. Make a request to /oauth/authorised with the oauth_token and oauth_verifier from 3, to obtain the Member object of the user who granted access after 2.
+*/
 @RestController
 public class OAuth1Controller {
     // URL for the Attributes request (https://warwick.ac.uk/services/its/servicessupport/web/sign-on/development/reference/attributes/)
@@ -33,13 +41,13 @@ public class OAuth1Controller {
     private OAuth1WithCallback oAuth1WithCallback;
 
     /*
-     REST Endpoint to obtain the redirect URL.
+        REST Endpoint to obtain the redirect URL.
 
-     On the front-end, the user is to be redirected to the returned URL.
+        On the front-end, the user is to be redirected to the returned URL.
 
-     After the user grants access, they shall be redirected to the specified callback URL,
-     with their temporary token and verifier as a parameter to the URL, which are to be captured on the front-end.
-     Then, a request to authorised is to be made with their temporary token and verifier.
+        After the user grants access, they shall be redirected to the specified callback URL,
+        with their temporary token and verifier as a parameter to the URL, which are to be captured on the front-end.
+        Then, a request to authorised is to be made with their temporary token and verifier.
     */
     @GetMapping("/oauth/begin")
     public String endpointBegin() {
@@ -55,14 +63,14 @@ public class OAuth1Controller {
     }
 
     /*
-     REST Endpoint to obtain the access token for a user, and make requests on their behalf, ultimately to return their date of birth (toy example).
+        REST Endpoint to obtain the access token for a user, and make requests on their behalf, ultimately to return their Member object (toy example).
 
-     On the front-end, make a request to this endpoint after having made the request to begin, and the user has landed on the callback URL.
+        On the front-end, make a request to this endpoint after having made the request to begin, and the user has landed on the callback URL.
 
-     After obtaining an access token for the user, we:
-     - do an Attributes request on behalf of the user to obtain their University ID
-     - do a Member request on behalf of the user to obtain their Member object from the Tabula API
-     - return the user's Member object
+        After obtaining an access token for the user, we:
+        - do an Attributes request on behalf of the user to obtain their University ID
+        - do a Member request on behalf of the user to obtain their Member object from the Tabula API
+        - return the user's Member object
     */
     @GetMapping("/oauth/authorised")
     public String endpointAuthorised(
@@ -84,11 +92,11 @@ public class OAuth1Controller {
         OAuthParameters oAuthParameters = authorisedResult.getOAuthParameters();
 
         /*
-         Successfully got an access token for the user.
+            Successfully got an access token for the user.
 
-         Now, do an attributes request on behalf the user to obtain their university ID,
-         then do a Member request on behalf of the user to obtain their Member from the Tabula API,
-         then return their Member object.
+            Now, do an attributes request on behalf the user to obtain their university ID,
+            then do a Member request on behalf of the user to obtain their Member from the Tabula API,
+            then return their Member object.
         */
 
         // Make Attributes request (is a POST request with an empty request body).

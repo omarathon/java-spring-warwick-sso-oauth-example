@@ -3,8 +3,10 @@ package me.omartanner.warwickoauth1;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-// An enum mapping Warwick's OAuth Scopes to their respective strings in the request token URL.
-// https://warwick.ac.uk/services/its/servicessupport/web/sign-on/help/oauth/apis/#scopes
+/*
+    An enum mapping Warwick's OAuth Scopes to their respective strings in the request token URL.
+    More information on Warwick's OAuth Scopes: https://warwick.ac.uk/services/its/servicessupport/web/sign-on/help/oauth/apis/#scopes
+ */
 public enum WarwickOAuthScope {
     WEB_SIGN_ON {
         public String getUrlString() {

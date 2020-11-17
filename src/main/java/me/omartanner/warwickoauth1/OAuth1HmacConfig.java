@@ -5,12 +5,18 @@ import oauth1.strategy.preset.HashMapTokenMapStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/*
+    Configuration Bean for an OAuth1WithCallback instance, from the oauth1-hmac library.
+    More information on oauth1-hmac: https://github.com/omarathon/oauth1-hmac
+    Usage:
+        - Fill in the "FILL_THIS_IN" fields, and change the SCOPES as you wish.
+ */
 @Configuration
 public class OAuth1HmacConfig {
     // Fill these in.
     private static final String CONSUMER_KEY = "FILL_THIS_IN"; // provided by Warwick (https://warwick.ac.uk/services/its/servicessupport/web/sign-on/help/oauth/apis/registration/)
     private static final String CONSUMER_SECRET = "FILL_THIS_IN"; // provided by Warwick (https://warwick.ac.uk/services/its/servicessupport/web/sign-on/help/oauth/apis/registration/)
-    private static final String CALLBACK_URL = "https://modulepal.com/settings"; // e.g. the URL to your login page
+    private static final String CALLBACK_URL = "FILL_THIS_IN"; // e.g. the URL to your login page
 
     // Change the Scopes if you wish. These are the Scopes required for this example to work.
     private static final WarwickOAuthScope[] SCOPES = {WarwickOAuthScope.WEB_SIGN_ON, WarwickOAuthScope.TABULA};
