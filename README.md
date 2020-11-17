@@ -4,6 +4,8 @@ Simple Spring application which uses [oauth1-hmac](https://github.com/omarathon/
 
 Demonstrates how to log users in, retrieve basic attributes and fetch information from a Warwick application (in this case, from [Tabula](https://github.com/UniversityofWarwick/tabula)).
 
+This application assumes you're using the [**HMAC**](https://en.wikipedia.org/wiki/HMAC) signing strategy for the OAuth1.0 implementation. If you're using [RSA-SHA1](https://www.w3.org/PICS/DSig/RSA-SHA1_1_0.html), this application will **not** work.
+
 ## Usage
 
 Firstly, configure [OAuth1HmacConfig](src/main/java/me/omartanner/warwickoauth1/OAuth1HmacConfig.java) by filling in the fields marked as `FILL_THIS_IN`, and change the `SCOPES` if you wish. If you are testing locally, feel free to use any reasonable callback URL (e.g. `https://google.com`).  
