@@ -15,7 +15,7 @@ Now, run the application. By default, it's served from `http://localhost:8080`, 
 1. Make a request to `/oauth/begin` to obtain a redirect URL.
 1. Redirect the user to the URL obtained from **1** (or if testing, visit it yourself).
 1. Once the user (or yourself, if testing) has granted access and landed on the callback URL, extract the `oauth_token` and `oauth_verifier` parameters from the URL.
-1. Make a request to `/oauth/authorised` with the `oauth_token` and `oauth_verifier` from **3**, to obtain the [Member object](https://warwick.ac.uk/services/its/servicessupport/web/tabula/api/member/member-object) of the user who granted access after **2**.
+1. Make a request to `/oauth/authorised` with the `oauth_token` and `oauth_verifier` from **3**, as parameters `oAuthToken` and `verifier` respectfully in the request body, to obtain the [Member object](https://warwick.ac.uk/services/its/servicessupport/web/tabula/api/member/member-object) of the user who granted access after **2**.
 
 ## Classes
 
