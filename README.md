@@ -15,13 +15,6 @@ Now, run the application. By default, it's served from `http://localhost:8080`, 
 1. Once the user (or yourself, if testing) has granted access and landed on the callback URL, extract the `oauth_token` and `oauth_verifier` parameters from the URL.
 1. Make a request to `/oauth/authorised` with the `oauth_token` and `oauth_verifier` from **3**, to obtain the [Member object](https://warwick.ac.uk/services/its/servicessupport/web/tabula/api/member/member-object) of the user who granted access after **2**.
 
-## Dependencies
-
-The dependencies may be found in [pom.xml](pom.xml).
-
-* [spring-boot-starter-web](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web) - Spring Web, essential for a Spring REST API application.
-* [oauth1-hmac](https://github.com/omarathon/oauth1-hmac) - Provides the underlying OAuth1.0 functionality.
-
 ## Classes
 
 The important classes can be found in [src/main/java/me/omartanner/warwickoauth1](src/main/java/me/omartanner/warwickoauth1).   
@@ -33,3 +26,10 @@ Classes marked in **bold** are for public viewing, the rest are auxiliary:
     1. `/oauth/authorised` - Obtain the access token for a user. Then, makes an [Attributes request](https://warwick.ac.uk/services/its/servicessupport/web/sign-on/development/reference/attributes/) on their behalf to obtain their University ID, and then makes a [Member request](https://warwick.ac.uk/services/its/servicessupport/web/tabula/api/member/retrieve-member) on their behalf to obtain their [Member object](https://warwick.ac.uk/services/its/servicessupport/web/tabula/api/member/member-object) from [Tabula](https://github.com/UniversityofWarwick/tabula). Finally, it returns their [Member object](https://warwick.ac.uk/services/its/servicessupport/web/tabula/api/member/member-object).
 * [WarwickOAuthScope](src/main/java/me/omartanner/warwickoauth1/WarwickOAuthScope.java) - An enum mapping [Warwick's OAuth Scopes](https://warwick.ac.uk/services/its/servicessupport/web/sign-on/help/oauth/apis/#scopes) to their respective strings in the request token URL.
 * [Application](src/main/java/me/omartanner/warwickoauth1/Application.java) - Spring Main class.
+
+## Dependencies
+
+The dependencies may be found in [pom.xml](pom.xml).
+
+* [spring-boot-starter-web](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web) - Spring Web, essential for a Spring REST API application.
+* [oauth1-hmac](https://github.com/omarathon/oauth1-hmac) - Provides the underlying OAuth1.0 functionality.
